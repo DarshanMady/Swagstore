@@ -77,16 +77,17 @@ def logout(request):
     return redirect('login')
 
 def activate(request , uidb64, token):
-    # try:
-    #     uid = urlsafe_base64_decode(uidb64).decode()
-    #     user = Account._default_manager.get(pk=uid)
-    # except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
-    #     user = None
-    # if user is not None and default_token_generator.check_token(user, token):
-    #     user.is_active = True
-    #     user.save()
-    #     messages.success(request,'Congratulations! You are now our Valuable Customer')
-    #     return redirect('login')
-    # else:
-    #     messages.error(request,'Invalid Link')
-        return HttpResponse('OK')
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Account._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request,'Congratulations! You are now our Valuable Customer')
+        return redirect('login')
+    else:
+        messages.error(request,'Invalid Link')
+        return redirect('register')
+        
