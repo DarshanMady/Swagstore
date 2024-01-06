@@ -62,8 +62,8 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            #messages.success(request,'Succesfully Logged In')
-            return redirect('home')
+            messages.success(request,'Succesfully Logged In')
+            return redirect('profile')
         else:
             messages.error(request, 'Invalid login credentials')
             return redirect('login')
@@ -90,4 +90,8 @@ def activate(request , uidb64, token):
     else:
         messages.error(request,'Invalid Link')
         return redirect('register')
-        
+
+
+@login_required(login_url='login')
+def profile(request):
+    return render(request , 'accounts/profile.html')
