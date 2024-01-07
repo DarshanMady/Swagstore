@@ -147,6 +147,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mady250101@gmail.com'
 #never share password
-EMAIL_HOST_PASSWORD = 'tcbhvxwqelabmxxc'
+EMAIL_HOST_PASSWORD = ''
 #keep it confidential
 EMAIL_USE_TLS = True
